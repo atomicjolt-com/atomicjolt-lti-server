@@ -3,7 +3,7 @@ import type {
   LTIStorageParams,
   InitSettings,
   LaunchSettings,
-} from '@atomicjolt-client/src/types';
+} from '@atomicjolt/lti-client/types';
 
 export interface Platform {
   iss: string;

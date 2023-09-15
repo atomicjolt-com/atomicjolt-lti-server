@@ -4,8 +4,9 @@
   "description": "Server side Javascript libraries to handle LTI",
   "main": "index.js",
   "scripts": {
-    "build": "node esbuild.mjs",
-    "test": "npx vitest"
+    "build": "tsc",
+    "test": "npx vitest",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "LTI"
@@ -16,7 +17,6 @@
     "@atomicjolt/lti-types": "^1.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
-    "esbuild": "^0.18.11",
     "eslint-config-typescript": "^3.0.0",
     "jsdom": "^22.1.0",
     "vitest": "^0.33.0"
