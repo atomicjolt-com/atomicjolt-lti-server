@@ -3,7 +3,7 @@ import type {
 } from '@atomicjolt/lti-client/types';
 
 import { OPEN_ID_COOKIE_PREFIX } from './constants';
-import { OIDCState } from '../types';
+import { OIDCState } from '../../types';
 import { getLtiStorageParams } from './platforms';
 
 export function buildInit(requestUrl: string, clientId: string, loginHint: string, ltiMessageHint: string, target: string, platformOIDCUrl: string) {

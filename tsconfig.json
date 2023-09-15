@@ -1,13 +1,16 @@
 {
 	"compilerOptions": {
-		"noEmit": true,
-		"module": "es2022",
-		"target": "es2021",
+		"noEmit": false,
+		"module": "ESNext",
+		"target": "ESNext",
 		"lib": [
 			"ESNext",
       "dom"
 		],
-		"outDir": "lti",
+		"outDir": "dist",
+		"declarationDir": "types",
+		"declaration": true,
+		"declarationMap": true,	
 		"removeComments": true,
 		"esModuleInterop": true,
 		"strict": true,
@@ -29,6 +32,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true
 	},
-	"include": ["src/**/*"],
+	"include": ["src/**/*", "types.d.ts"],
 	"exclude": ["node_modules/**/*", "lti", "test"]
 }
