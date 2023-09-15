@@ -1,4 +1,4 @@
-import type { IdToken } from '@atomicjolt-client/src/libs/lti_definitions';
+import type { IdToken } from '@atomicjolt/lti-types';
 import type { 
   LTIStorageParams,
   InitSettings,

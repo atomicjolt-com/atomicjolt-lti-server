@@ -11,7 +11,7 @@ import {
   RESOURCE_LINK_CLAIM,
   ResourceLinkClaim,
   TARGET_LINK_URI_CLAIM,
-} from '@atomicjolt/lti-client/src/libs/lti_definitions';
+} from '@atomicjolt/lti-types';
 
 import { validateIdTokenContents } from './lti_validation';
 

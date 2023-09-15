@@ -1,6 +1,6 @@
 import type { 
   InitSettings,
-} from '@atomicjolt-client/src/types';
+} from '@atomicjolt/lti-client/types';
 
 import { OPEN_ID_COOKIE_PREFIX } from './constants';
 import { OIDCState } from '../types';
