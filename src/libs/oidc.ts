@@ -1,4 +1,4 @@
-import type { 
+import type {
   InitSettings,
 } from '@atomicjolt/lti-client/types';
 
@@ -6,10 +6,16 @@ import { OPEN_ID_COOKIE_PREFIX } from './constants';
 import { OIDCState } from '../../types';
 import { getLtiStorageParams } from './platforms';
 
-export function buildInit(requestUrl: string, clientId: string, loginHint: string, ltiMessageHint: string, target: string, platformOIDCUrl: string) {
+export function buildInit(
+	requestUrl: string,
+	clientId: string,
+	loginHint: string,
+	ltiMessageHint: string,
+	target: string,
+	platformOIDCUrl: string) : { oidcState: OIDCState, url: URL, settings: InitSettings } {
 	const host = new URL(requestUrl).host;
 	const redirectUrl = `https://${host}/lti/redirect`;
-	
+
 	const oidcState = buildOIDCState();
 	const url = buildResponse(
 		platformOIDCUrl,
@@ -65,7 +71,7 @@ export function buildResponse(
 	return url;
 }
 
-export function relaunchInitUrl(requestUrl: string) {
+export function relaunchInitUrl(requestUrl: string) : string {
 	let url = new URL(requestUrl);
 	url.searchParams.delete('lti_storage_target');
 	return url.toString();
