@@ -1,5 +1,5 @@
 import type { IdToken } from '@atomicjolt/lti-types';
-import type { 
+import type {
   LTIStorageParams,
   InitSettings,
   LaunchSettings,
@@ -7,7 +7,6 @@ import type {
 
 export interface Platform {
   iss: string;
-  clientId: string;
   jwksUrl: string;
   tokenUrl: string;
   oidcUrl: string;
