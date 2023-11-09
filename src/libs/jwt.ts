@@ -7,16 +7,21 @@ import {
 
 export const ALGORITHM = 'RS256';
 
-export async function signJwt(payload: JWTPayload, secretKey: KeyLike, iss: string, aud: string, expiresIn: string = '10m'): Promise<string> {
+export async function signJwt(payload: JWTPayload, secretKey: KeyLike, expiresIn: string = '10m'): Promise<string> {
   const jwt = await new SignJWT(payload)
     .setProtectedHeader({ alg: ALGORITHM })
     .setIssuedAt()
-    .setIssuer(iss)
-    .setAudience(aud)
-    .setExpirationTime(expiresIn)
-    .sign(secretKey)
+    .setExpirationTime(expiresIn);
 
-  return jwt;
+  let signed = '';
+  try {
+    signed = await jwt.sign(secretKey);
+  } catch (e) {
+    console.error(e);
+    throw new Error(`Unable to sign JWT: ${e}`);
+  }
+
+  return signed;
 }
 
 export async function verifyJwt(jwt: string, secretKey: KeyLike, iss: string, aud: string): Promise<JWTPayload> {

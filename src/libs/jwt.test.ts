@@ -1,30 +1,40 @@
 import { expect, it, describe } from 'vitest';
 import {
+  ALGORITHM,
   signJwt,
   verifyJwt,
 } from './jwt';
-import { KeyLike } from 'jose';
+import { importPKCS8 } from 'jose';
 import { TEST_ID_TOKEN } from '../tests/helper';
+import { generateKeySet } from './jwks';
 
-describe('jwt', () => {
-  const iss = 'issuer';
-  const aud = 'audience';
+describe('jwt', async () => {
   const expiresIn = '10m';
-  const secretKey = new TextEncoder().encode('cc7e0d44fd473002f1c42167459001140ec6389b7353f8088f4d9a95f2f596f2') as unknown as KeyLike;
-  const badSecretKey = new TextEncoder().encode('cc7e0d44fd473002f1c42167459001140ec6389b7353f8088f4d9a95f2f59333') as unknown as KeyLike;
+
+  const goodKeySet = await generateKeySet();
+  const goodKey = await importPKCS8(goodKeySet.privateKey, ALGORITHM);
+
+  const badKeySet = await generateKeySet();
+  const badKey = await importPKCS8(badKeySet.privateKey, ALGORITHM);
 
   it('should sign and verify JWT', async () => {
-    const jwt = await signJwt(TEST_ID_TOKEN, secretKey, iss, aud, expiresIn);
+    const jwt = await signJwt(TEST_ID_TOKEN, goodKey, expiresIn);
     expect(jwt).toBeDefined();
 
-    const verifiedPayload = await verifyJwt(jwt, secretKey, iss, aud);
+    const verifiedPayload = await verifyJwt(jwt, goodKey, TEST_ID_TOKEN.iss, TEST_ID_TOKEN.aud);
+
+    // Exclude 'iat' and 'exp' properties from the comparison
+    delete verifiedPayload.iat;
+    delete verifiedPayload.exp;
+    delete (TEST_ID_TOKEN as any)?.iat;
+    delete (TEST_ID_TOKEN as any)?.exp;
     expect(verifiedPayload).toEqual(TEST_ID_TOKEN);
   });
 
   it('should fail to verify JWT with wrong secret', async () => {
-    const jwt = await signJwt(TEST_ID_TOKEN, secretKey, iss, aud, expiresIn);
+    const jwt = await signJwt(TEST_ID_TOKEN, goodKey, expiresIn);
     expect(jwt).toBeDefined();
 
-    await expect(verifyJwt(jwt, badSecretKey, iss, aud)).rejects.toThrow();
+    await expect(verifyJwt(jwt, badKey, TEST_ID_TOKEN.iss, TEST_ID_TOKEN.aud)).rejects.toThrow();
   });
 });

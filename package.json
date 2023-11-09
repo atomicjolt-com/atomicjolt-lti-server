@@ -1,6 +1,6 @@
 {
   "name": "@atomicjolt/lti-server",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Server side Javascript libraries to handle LTI",
   "main": "dist/index.js",
   "typings": "types/index.d.ts",
@@ -20,8 +20,7 @@
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
     "eslint-config-typescript": "^3.0.0",
-    "jsdom": "^22.1.0",
-    "vitest": "^0.34.4"
+    "vitest": "^0.34.6"
   },
   "dependencies": {
     "i18next": "^23.6.0",
