@@ -5,6 +5,8 @@ import type {
   LaunchSettings,
 } from '@atomicjolt/lti-client/types';
 
+export type { IdToken } from '@atomicjolt/lti-types';
+
 export interface Platform {
   iss: string;
   jwksUrl: string;
@@ -22,13 +24,13 @@ export interface OIDCState {
   datetime: string;
 }
 
-export type LTIRequestBody = {
+export interface LTIRequestBody {
   state: string;
   id_token: string;
   lti_storage_target: string;
 }
 
-export type IdTokenResult = {
+export interface IdTokenResult {
   verified: Boolean;
   token: IdToken | null;
   error: string | null;
