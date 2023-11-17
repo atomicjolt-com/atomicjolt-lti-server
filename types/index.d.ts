@@ -5,4 +5,5 @@ export { OPEN_ID_COOKIE_PREFIX, OPEN_ID_STORAGE_COOKIE, ALLOWED_LAUNCH_TIME, } f
 export { ALGORITHM, signJwt, verifyJwt } from './libs/jwt';
 export { generateKeySet, keySetsToJwks, fetchRemoteJwks, verifyJwtUsingJwks } from './libs/jwks';
 export { TEST_ID_TOKEN, genJwt } from './tests/helper';
+export { getDefaultToolConfiguration } from './libs/tool_configuration';
 //# sourceMappingURL=index.d.ts.map

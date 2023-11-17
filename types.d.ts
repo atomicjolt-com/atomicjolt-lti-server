@@ -7,15 +7,8 @@ import type {
 
 export type { IdToken } from '@atomicjolt/lti-types';
 
-export interface Platform {
-  iss: string;
-  jwksUrl: string;
-  tokenUrl: string;
-  oidcUrl: string;
-}
-
-export interface Platforms {
-  [key: string]: Platform;
+export interface PlatformConfigurations {
+  [key: string]: PlatformConfiguration;
 }
 
 export interface OIDCState {
@@ -28,6 +21,14 @@ export interface LTIRequestBody {
   state: string;
   id_token: string;
   lti_storage_target: string;
+}
+
+export interface LTIInitBody {
+  lti_storage_target: string;
+  lti_message_hint: string;
+  login_hint: string;
+  client_id: string;
+  iss: string;
 }
 
 export interface JwtValidationResult {

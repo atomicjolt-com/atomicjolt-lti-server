@@ -9,3 +9,4 @@ export {
 export { ALGORITHM, signJwt, verifyJwt } from './libs/jwt';
 export { generateKeySet, keySetsToJwks, fetchRemoteJwks, verifyJwtUsingJwks } from './libs/jwks';
 export { TEST_ID_TOKEN, genJwt } from './tests/helper';
+export { getDefaultToolConfiguration } from './libs/tool_configuration';
