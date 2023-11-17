@@ -1,4 +1,4 @@
-import type { KeySet, jwksResult, JwtValidationResult, IdToken } from '../../types';
+import type { KeySet, JwtValidationResult, IdToken } from '../../types';
 import {
   generateKeyPair,
   importSPKI,
@@ -43,11 +43,11 @@ export async function keySetsToJwks(keySets: KeySet[]): Promise<JSONWebKeySet> {
   return result;
 }
 
-export async function fetchRemoteJwks(jwksUrl: string): Promise<jwksResult> {
+export async function fetchRemoteJwks(jwksUrl: string): Promise<JSONWebKeySet> {
   const resp = await fetch(jwksUrl);
   if (resp.ok) {
     const jwks = await resp.json();
-    return jwks as jwksResult;
+    return jwks as JSONWebKeySet;
   }
   throw (`Unable to retrieve JWKS from ${jwksUrl}`);
 }
