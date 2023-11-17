@@ -1,5 +1,4 @@
-// import { LTIStorageParams } from '../types';
-import type { 
+import type {
   LTIStorageParams,
 } from '@atomicjolt/lti-client/types';
 

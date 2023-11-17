@@ -3,8 +3,8 @@ import type {
 } from '@atomicjolt/lti-client/types';
 
 import { OPEN_ID_COOKIE_PREFIX, ALLOWED_LAUNCH_TIME } from './constants';
-import { IdTokenResult, OIDCState } from '../../types';
-import { getLtiStorageParams } from './platforms';
+import { IdToken, OIDCState } from '../../types';
+import { getLtiStorageParams } from './platform_storage';
 
 export function buildInit(
   requestUrl: string,
@@ -77,7 +77,7 @@ export function relaunchInitUrl(requestUrl: string): string {
   return url.toString();
 }
 
-export async function validateNonce(oidcState: OIDCState, idTokenResult: IdTokenResult) {
+export async function validateNonce(oidcState: OIDCState, idToken: IdToken) {
   // Check the nonce and make sure the state is not older than 10 minutes
   const datetime = new Date(oidcState.datetime);
   const tenMinutesAgo = new Date().getTime() - ALLOWED_LAUNCH_TIME;
@@ -86,7 +86,7 @@ export async function validateNonce(oidcState: OIDCState, idTokenResult: IdToken
     throw new Error('Allowed time has expired. Please launch the application again.');
   }
 
-  const nonce = idTokenResult.token?.nonce;
+  const nonce = idToken?.nonce;
   if (nonce && nonce !== oidcState.nonce) {
     throw new Error('Duplicate LTI launch. Please launch the application again.');
   }

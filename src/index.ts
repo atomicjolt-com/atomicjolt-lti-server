@@ -1,5 +1,5 @@
 export { buildInit, validateNonce } from './libs/oidc';
-export { getLtiStorageParams } from './libs/platforms';
+export { getLtiStorageParams } from './libs/platform_storage';
 export { validateIdTokenContents } from './libs/lti_validation';
 export {
   OPEN_ID_COOKIE_PREFIX,

@@ -30,9 +30,9 @@ export interface LTIRequestBody {
   lti_storage_target: string;
 }
 
-export interface IdTokenResult {
+export interface JwtValidationResult {
   verified: Boolean;
-  token: IdToken | null;
+  token: any | null;
   error: string | null;
 };
 
@@ -47,7 +47,7 @@ export interface KeySet {
   privateKey: string;
 }
 
-export interface JWK_RESULT {
+export interface jwkResult {
   kty: string;
   kid: string;
   use: string;
@@ -62,6 +62,6 @@ export interface JWK_RESULT {
   qi: string;
 }
 
-export interface JWKS_RESULT {
-  keys: JWK_RESULT[];
+export interface jwksResult {
+  keys: jwkResult[];
 }
