@@ -7,9 +7,19 @@ import {
 
 export const ALGORITHM = 'RS256';
 
-export async function signJwt(payload: JWTPayload, secretKey: KeyLike, expiresIn: string = '10m'): Promise<string> {
+type Header = {
+  alg: string;
+  kid?: string;
+};
+
+export async function signJwt(payload: JWTPayload, secretKey: KeyLike, expiresIn: string = '10m', kid: string = ''): Promise<string> {
+  const header: Header = { alg: ALGORITHM };
+  if (kid) {
+    header.kid = kid;
+  }
+
   const jwt = await new SignJWT(payload)
-    .setProtectedHeader({ alg: ALGORITHM })
+    .setProtectedHeader(header)
     .setIssuedAt()
     .setExpirationTime(expiresIn);
 

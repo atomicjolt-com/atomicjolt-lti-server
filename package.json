@@ -1,6 +1,6 @@
 {
   "name": "@atomicjolt/lti-server",
-  "version": "1.8.1",
+  "version": "1.9.0",
   "description": "Server side Javascript libraries to handle LTI",
   "main": "dist/index.js",
   "typings": "types/index.d.ts",
@@ -16,7 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "@atomicjolt/lti-client": "^2.4.6",
-    "@atomicjolt/lti-types": "^1.1.3",
+    "@atomicjolt/lti-types": "^1.1.4",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
     "eslint-config-typescript": "^3.0.0",

@@ -13,14 +13,35 @@ describe('jwks', () => {
 
   it('generates jwks given a keyset', async () => {
     const keySet = await generateKeySet();
-    const jwks = await keySetsToJwks([keySet]);
+    const keySetMap = {
+      'test:1': keySet,
+    };
+
+    const jwks = await keySetsToJwks(keySetMap);
     expect(jwks).toBeTruthy();
   });
 
   it('signs using signJwt and then decodes using verifyJwtUsingJwks', async () => {
     const { keySet, signed } = await genJwt();
-    const jwks = await keySetsToJwks([keySet]);
+    const keySetMap = {
+      'test:1': keySet,
+    };
+    const jwks = await keySetsToJwks(keySetMap);
     const decodedResult = await verifyJwtUsingJwks(jwks, signed);
     expect(decodedResult.verified).toEqual(true);
   });
+
+  it('should verify a valid JWT', async () => {
+
+    const { keySet, signed } = await genJwt();
+    const keySetMap = {
+      'test:1': keySet,
+    };
+    const jwks = await keySetsToJwks(keySetMap);
+    const result = await verifyJwtUsingJwks(jwks, signed);
+
+    expect(result.verified).toEqual(true);
+  });
+
+
 });

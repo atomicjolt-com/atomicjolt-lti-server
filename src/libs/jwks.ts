@@ -1,11 +1,10 @@
-import type { KeySet, JwtValidationResult, IdToken } from '../../types';
+import type { KeySet, JwtValidationResult, IdToken, KeySetMap } from '../../types';
 import {
   generateKeyPair,
   importSPKI,
   exportSPKI,
   exportPKCS8,
   exportJWK,
-  calculateJwkThumbprint,
   jwtVerify,
   createLocalJWKSet,
   JSONWebKeySet,
@@ -23,18 +22,20 @@ export async function generateKeySet(): Promise<KeySet> {
   };
 }
 
-export async function keySetsToJwks(keySets: KeySet[]): Promise<JSONWebKeySet> {
-  const jwks = await Promise.all(keySets.map(async (ks) => {
+export async function keySetsToJwks(keySetMap: KeySetMap): Promise<JSONWebKeySet> {
+  const jwksPromises = Object.entries(keySetMap).map(async ([kid, ks]) => {
     const pub = await importSPKI(ks.publicKey, ALGORITHM, { extractable: true });
     const publicJwk = await exportJWK(pub);
-    const kid = await calculateJwkThumbprint(publicJwk);
+
     return {
       ...publicJwk,
       kid,
       use: 'sig',
       alg: ALGORITHM,
     };
-  }));
+  });
+
+  const jwks = await Promise.all(jwksPromises);
 
   const result: JSONWebKeySet = {
     keys: jwks,
