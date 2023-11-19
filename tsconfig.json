@@ -33,12 +33,10 @@
   },
   "include": [
     "src/**/*",
-    "types.d.ts",
-    "../atomicjolt-lti-endpoints/src/libs/client_credentials.ts"
+    "types.d.ts"
   ],
   "exclude": [
     "node_modules/**/*",
-    "lti",
     "test"
   ]
 }
