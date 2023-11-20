@@ -42,3 +42,13 @@ export async function verifyJwt(jwt: string, secretKey: KeyLike, iss: string, au
 
   return payload;
 }
+
+export function getKid(jwt: string): string | null {
+  const [headerPart] = jwt.split('.');
+  if (!headerPart) {
+    return null;
+  }
+  const header = atob(headerPart);
+  const decodedHeader = JSON.parse(header) as Header;
+  return decodedHeader.kid || null;
+}

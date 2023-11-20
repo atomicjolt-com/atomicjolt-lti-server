@@ -1,6 +1,7 @@
 import { expect, it, describe } from 'vitest';
 import {
   ALGORITHM,
+  getKid,
   signJwt,
   verifyJwt,
 } from './jwt';
@@ -36,5 +37,18 @@ describe('jwt', async () => {
     expect(jwt).toBeDefined();
 
     await expect(verifyJwt(jwt, badKey, TEST_ID_TOKEN.iss, TEST_ID_TOKEN.aud)).rejects.toThrow();
+  });
+
+  it('should return the kid field from a valid JWT', async () => {
+    const kid = 'testkid';
+    const jwt = await signJwt(TEST_ID_TOKEN, goodKey, expiresIn, kid);
+    const foundKid = getKid(jwt);
+    expect(foundKid).to.equal(kid);
+  });
+
+  it('should return undefined if the kid field is missing', async () => {
+    const jwt = await signJwt(TEST_ID_TOKEN, goodKey, expiresIn);
+    const kid = getKid(jwt);
+    expect(kid).to.be.null;
   });
 });

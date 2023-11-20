@@ -16,7 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "@atomicjolt/lti-client": "^2.4.6",
-    "@atomicjolt/lti-types": "^1.1.4",
+    "@atomicjolt/lti-types": "^1.1.5",
     "@typescript-eslint/eslint-plugin": "^6.11.0",
     "@typescript-eslint/parser": "^6.11.0",
     "eslint-config-typescript": "^3.0.0",
