@@ -147,9 +147,9 @@ export const TEST_ID_TOKEN: IdToken = {
   },
 }
 
-export async function genJwt(token: IdToken = TEST_ID_TOKEN): Promise<JwtPieces> {
+export async function genJwt(token: IdToken = TEST_ID_TOKEN, expiresIn: string = '10m', kid: string = ''): Promise<JwtPieces> {
   const keySet = await generateKeySet();
   const pri = await importPKCS8(keySet.privateKey, ALGORITHM);
-  const signed = await signJwt(token, pri);
+  const signed = await signJwt(token, pri, expiresIn, kid);
   return { keySet, signed };
 }

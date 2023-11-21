@@ -27,7 +27,7 @@ export function getDefaultToolConfiguration(
     tos_uri: tosUri,
     token_endpoint_auth_method: "private_key_jwt",
     contacts: [email],
-    scope: "line_item line_item_readonly result score names_and_roles",
+    scope: "",
     "https://purl.imsglobal.org/spec/lti-tool-configuration": {
       domain: baseUrl,
       description: clientName,

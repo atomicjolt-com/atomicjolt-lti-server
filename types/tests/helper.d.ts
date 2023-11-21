@@ -5,5 +5,5 @@ export type JwtPieces = {
     signed: string;
 };
 export declare const TEST_ID_TOKEN: IdToken;
-export declare function genJwt(token?: IdToken): Promise<JwtPieces>;
+export declare function genJwt(token?: IdToken, expiresIn?: string, kid?: string): Promise<JwtPieces>;
 //# sourceMappingURL=helper.d.ts.map

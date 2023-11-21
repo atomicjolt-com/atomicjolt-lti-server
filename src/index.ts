@@ -6,7 +6,7 @@ export {
   OPEN_ID_STORAGE_COOKIE,
   ALLOWED_LAUNCH_TIME,
 } from './libs/constants';
-export { ALGORITHM, signJwt, verifyJwt } from './libs/jwt';
+export { ALGORITHM, signJwt, verifyJwt, getKid } from './libs/jwt';
 export { generateKeySet, keySetsToJwks, fetchRemoteJwks, verifyJwtUsingJwks } from './libs/jwks';
 export { TEST_ID_TOKEN, genJwt } from './tests/helper';
 export { getDefaultToolConfiguration } from './libs/tool_configuration';
