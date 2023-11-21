@@ -12,3 +12,4 @@ export { TEST_ID_TOKEN, genJwt } from './tests/helper';
 export { getDefaultToolConfiguration } from './libs/tool_configuration';
 export { getDefaultToolJwt } from './libs/tool_jwt';
 export { parseLinkHeader } from './libs/link_header';
+export { requestServiceToken, ClientCredentialsError } from './libs/client_credentials';

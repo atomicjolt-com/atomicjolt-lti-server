@@ -1,17 +1,5 @@
 import { DeepLinkingClaim } from "@atomicjolt/lti-types";
-
-export type ToolJwt = {
-  clientId: string;
-  deploymentId: string;
-  iss: string;
-  aud: string;
-  sub: string;
-  exp: number;
-  iat: number;
-  platformIss: string;
-  namesAndRolesEndpointUrl?: string;
-  deepLinkClaimData?: DeepLinkingClaim;
-};
+import { ToolJwt } from "../../types";
 
 // Build a default tool jwt
 // client_id: The client_id of the tool

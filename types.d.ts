@@ -104,3 +104,16 @@ export type ClientAuthorizationResponse = {
   expires_in: number;
   scope: string;
 };
+
+export type ToolJwt = {
+  clientId: string;
+  deploymentId: string;
+  iss: string;
+  aud: string;
+  sub: string;
+  exp: number;
+  iat: number;
+  platformIss: string;
+  namesAndRolesEndpointUrl?: string;
+  deepLinkClaimData?: DeepLinkingClaim;
+};
