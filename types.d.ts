@@ -57,6 +57,11 @@ export interface KeySetMap {
   [kid: string]: KeySet;
 }
 
+export interface PrivateKeyPair {
+  kid: string;
+  privateKey: KeyLike;
+}
+
 export interface jwkResult {
   kty: string;
   kid: string;
