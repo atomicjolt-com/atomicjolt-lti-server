@@ -3,6 +3,7 @@ import {
   jwtVerify,
   JWTPayload,
   KeyLike,
+  decodeJwt,
 } from 'jose';
 
 export const ALGORITHM = 'RS256';
@@ -51,4 +52,13 @@ export function getKid(jwt: string): string | null {
   const header = atob(headerPart);
   const decodedHeader = JSON.parse(header) as Header;
   return decodedHeader.kid || null;
+}
+
+export function getIss(jwt: string): string {
+  const decoded = decodeJwt(jwt);
+  const iss = decoded?.iss;
+  if (!iss) {
+    throw new Error('LTI token is missing required field iss.');
+  }
+  return iss;
 }

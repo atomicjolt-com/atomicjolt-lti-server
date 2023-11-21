@@ -4,9 +4,10 @@ import {
   getKid,
   signJwt,
   verifyJwt,
+  getIss,
 } from './jwt';
 import { importPKCS8 } from 'jose';
-import { TEST_ID_TOKEN } from '../tests/helper';
+import { TEST_ID_TOKEN, genJwt } from '../tests/helper';
 import { generateKeySet } from './jwks';
 
 describe('jwt', async () => {
@@ -50,5 +51,25 @@ describe('jwt', async () => {
     const jwt = await signJwt(TEST_ID_TOKEN, goodKey, expiresIn);
     const kid = getKid(jwt);
     expect(kid).to.be.null;
+  });
+});
+
+describe('getIss', function () {
+  it('should return the iss field from a valid JWT', async () => {
+    const token = { ...TEST_ID_TOKEN };
+    const { signed } = await genJwt(token);
+    const jwt = signed;
+    const iss = getIss(jwt);
+    expect(iss).to.equal(token.iss);
+  });
+
+  it('should throw an error if the iss field is missing', async () => {
+    const token = { ...TEST_ID_TOKEN };
+    // @ts-expect-error
+    delete token['iss'];
+    const { signed } = await genJwt(token);
+    const jwt = signed;
+
+    expect(() => getIss(jwt)).to.throw('LTI token is missing required field iss.');
   });
 });
