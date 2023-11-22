@@ -76,7 +76,5 @@ export async function sendScore(
   });
 
   const body = await response.json();
-  const resultJson = JSON.parse(body);
-
-  return resultJson as ScoreResponse;
+  return body as ScoreResponse;
 }
