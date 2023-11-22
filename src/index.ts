@@ -12,3 +12,6 @@ export { TEST_ID_TOKEN, genJwt } from './tests/helper';
 export { getDefaultToolConfiguration } from './libs/tool_configuration';
 export { parseLinkHeader } from './libs/link_header';
 export { requestServiceToken, ClientCredentialsError } from './libs/client_credentials';
+export { createScore, sendScore } from './libs/scores';
+export { listResults, showResult } from './libs/results';
+export { listLineItems, showLineItem, createLineItem, updateLineItem } from './libs/line_items';

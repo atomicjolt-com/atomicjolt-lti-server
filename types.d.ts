@@ -117,3 +117,102 @@ export type ToolJwt = {
   namesAndRolesEndpointUrl?: string;
   deepLinkClaimData?: DeepLinkingClaim;
 };
+
+//
+// Scores
+//
+export interface ScoreContentItem {
+  type: string;
+  url: string;
+  title?: string;
+  media_type?: string;
+}
+
+export interface ScoreResponse {
+  resultUrl: string;
+  'https://canvas.instructure.com/lti/submission': Submission;
+}
+
+export interface Submission {
+  content_items: ScoreContentItem[];
+}
+
+export interface Score {
+  user_id: string;
+  score_given: number;
+  score_maximum: number;
+  comment?: string;
+  timestamp: string;
+  activity_progress: ActivityProgress;
+  grading_progress: GradingProgress;
+  new_submission?: boolean;
+  preserve_score?: boolean;
+  prioritize_non_tool_grade?: boolean;
+  submission_type?: string;
+  submission_data?: string;
+  submitted_at?: string;
+  content_items?: ScoreContentItem[];
+}
+
+//
+// Results
+//
+export interface LineItemResult {
+  id: string;
+  user_id: string;
+  result_score: number;
+  result_maximum: number;
+  comment?: string;
+  score_of: string;
+}
+
+export interface ResultListParams {
+  user_id?: string;
+  limit?: number;
+}
+
+//
+// Line items
+//
+export interface LineItem {
+  id: string;
+  scoreMaximum: number;
+  label: string;
+  tag: string;
+  resourceId: string;
+  resourceLinkId: string;
+  "https://canvas.instructure.com/lti/submission_type"?: SubmissionType;
+  "https://canvas.instructure.com/lti/launch_url"?: string;
+}
+
+export interface NewLineItem {
+  scoreMaximum: number;
+  label: string;
+  resourceId: string;
+  tag: string;
+  resourceLinkId: string;
+  endDateTime: string; // ISO8601 date and time
+  "https://canvas.instructure.com/lti/submission_type"?: SubmissionType;
+}
+
+export interface UpdateLineItem {
+  scoreMaximum: number;
+  label: string;
+  resourceId: string;
+  tag: string;
+  resourceLinkId: string;
+  endDateTime: string; // ISO8601 date and time
+}
+
+export interface SubmissionType {
+  type: string;
+  externalToolUrl: string;
+}
+
+export interface LineItemListParams {
+  tag?: string;
+  resource_id?: string;
+  resource_link_id?: string;
+  limit?: number;
+  include?: string[];
+}
